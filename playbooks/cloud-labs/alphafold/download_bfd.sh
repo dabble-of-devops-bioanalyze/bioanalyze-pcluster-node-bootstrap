@@ -49,3 +49,5 @@ aria2c "${SOURCE_URL}" --dir="${ROOT_DIR}"
 tar --extract --verbose --file="${ROOT_DIR}/${BASENAME}" \
   --directory="${ROOT_DIR}"
 rm "${ROOT_DIR}/${BASENAME}"
+
+chmod -R +r ${ROOT_DIR}

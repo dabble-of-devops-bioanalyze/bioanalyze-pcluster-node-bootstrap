@@ -84,3 +84,4 @@ echo "Downloading PDB SeqRes..."
 bash "${SCRIPT_DIR}/download_pdb_seqres.sh" "${DOWNLOAD_DIR}"
 
 echo "All data downloaded."
+chmod -R +r ${ROOT_DIR}

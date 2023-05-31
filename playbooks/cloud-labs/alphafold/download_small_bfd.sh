@@ -42,3 +42,4 @@ aria2c "${SOURCE_URL}" --dir="${ROOT_DIR}"
 pushd "${ROOT_DIR}"
 gunzip "${ROOT_DIR}/${BASENAME}"
 popd
+chmod -R +r ${ROOT_DIR}
