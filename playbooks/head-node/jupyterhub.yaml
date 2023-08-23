@@ -1,7 +1,11 @@
 ---
+- name: Create config dirs
+  ansible.builtin.import_playbook: ./prepare.yaml
 - name: Configure Jupyterhub
   hosts: localhost
   vars:
+    dirs:
+      - /apps/software-configs/jupyterhub/
     # the system user is either ubuntu or alinux2
     system_configs:
       - {

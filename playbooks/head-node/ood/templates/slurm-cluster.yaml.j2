@@ -1,0 +1,26 @@
+# /etc/ood/config/clusters.d/slurm_cluster.yml
+#set_host: "host=$(hostname -A | awk '{print $2}')"
+---
+v2:
+  metadata:
+    title: "bioanalyze-hpc-dev-slurm-20230529-1"
+  login:
+    host: "hpc.bioanalyze-dev.io"
+  job:
+    adapter: "slurm"
+    cluster: "bioanalyze-hpc-dev-slurm-20230529-1"
+    bin: "/opt/slurm/bin"
+    conf: "/opt/slurm/etc/slurm.conf"
+  batch_connect:
+    basic:
+      script_wrapper: |
+        module purge
+        export PATH="/opt/TurboVNC/bin/:$PATH"
+        export WEBSOCKIFY_CMD="/usr/bin/websockify"
+        %s
+    vnc:
+      script_wrapper: |
+        module purge
+        export PATH="/opt/TurboVNC/bin/:$PATH"
+        export WEBSOCKIFY_CMD="/usr/bin/websockify"
+        %s

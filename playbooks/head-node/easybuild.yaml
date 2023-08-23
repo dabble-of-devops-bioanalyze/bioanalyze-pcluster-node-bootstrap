@@ -1,4 +1,6 @@
 ---
+- name: Create config dirs
+  ansible.builtin.import_playbook: ./prepare.yaml
 - name: Bootstrap easybuild
   hosts: localhost
   roles:
