@@ -1,0 +1,34 @@
+# Base Mamba Installation before the EasyBuild bootstrap
+---
+- name: Mamba Installation
+  hosts: localhost
+  tasks:
+    - name: Check if conda already in place
+      stat:
+        path: /home/ubuntu/conda/etc/profile.d/conda.sh
+      register: conda_in_place
+
+    - block:
+        - name: Download Mambaforge installer
+          become: yes
+          become_user: "ubuntu"
+          ansible.builtin.shell: wget -O /tmp/Mambaforge.sh  "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+        - name: Run the installer
+          become: yes
+          become_user: "ubuntu"
+          ansible.builtin.shell: bash /tmp/Mambaforge.sh -b -u -p "${HOME}/conda"
+        - name: Remove the installer
+          become: yes
+          become_user: "ubuntu"
+          file:
+            state: absent
+            path: /tmp/Mambaforge.sh
+        - name: Create the path to Conda
+          become: yes
+          become_user: "ubuntu"
+          ansible.builtin.shell: |
+            source "/home/ubuntu/conda/etc/profile.d/conda.sh"
+            conda activate
+          args:
+            executable: /bin/bash
+      when: not conda_in_place.stat.exists

@@ -1,6 +1,8 @@
 ---
 - name: Create config dirs
   ansible.builtin.import_playbook: ./prepare.yaml
+- name: Install mambaforge
+  ansible.builtin.import_playbook: ./mambaforge.yaml
 - name: Bootstrap easybuild
   hosts: localhost
   roles:
@@ -15,7 +17,8 @@
       
       module purge
       
-      source activate easybuild4
+      source "/home/ubuntu/conda/etc/profile.d/conda.sh"
+      source activate /home/ubuntu/conda/envs/easybuild4
       pip install "easybuild>=4,<5"
       
       export SBATCH_EXCLUSIVE=""
@@ -25,6 +28,8 @@
       export EASYBUILD_JOB_BACKEND='Slurm'
       eb --robot=${ROBOT}: --job  \
         --tmp-logdir $HOME/eb_tmplogs \
+        easybuild/easyconfigs/jupyterlab/jupyterlab-2023.09.17.eb \
+        easybuild/easyconfigs/jupyterlab/jupyterlab-2023.07.10.eb \
         easybuild/easyconfigs/miniconda3-4.12.0.eb \
         easybuild/easyconfigs/r-datascience-4.eb \
         easybuild/easyconfigs/pcluster-helpers-0.0.1.eb \
