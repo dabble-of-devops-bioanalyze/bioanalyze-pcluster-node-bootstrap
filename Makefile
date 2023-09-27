@@ -27,6 +27,12 @@ apply:
 	ansible-playbook ./playbooks/head-node/prepare.yaml
 	ansible-playbook ./playbooks/head-node/easybuild.yaml
 	ansible-playbook ./playbooks/head-node/jupyterhub.yaml
+
+apply-all:
+	echo "apply"
+	ansible-playbook ./playbooks/head-node/prepare.yaml
+	ansible-playbook ./playbooks/head-node/easybuild.yaml
+	ansible-playbook ./playbooks/head-node/jupyterhub.yaml
 	ansible-playbook ./playbooks/head-node/spack.yaml
 	ansible-playbook ./playbooks/cloud-labs/R/r.yaml
 	ansible-playbook ./playbooks/cloud-labs/bioconductor/bioconductor.yaml
@@ -37,7 +43,6 @@ apply:
 	ansible-playbook ./playbooks/cloud-labs/gromacs/gromacs.yaml
 	ansible-playbook ./playbooks/cloud-labs/alphafold/alphafold.yaml
 	ansible-playbook ./playbooks/cloud-labs/py-pymol/py-pymol.yaml
-
 
 ##################################
 # Install software and data
