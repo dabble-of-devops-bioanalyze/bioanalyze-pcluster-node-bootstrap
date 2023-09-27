@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 export AWS_DEFAULT_REGION="us-east-1"
+export JHUB_VERSION="2023.09.17"
 
 PORT_NUMBER=8001
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' |  xargs -I {} kill {}
@@ -8,4 +9,4 @@ PORT_NUMBER=8000
 lsof -i tcp:${PORT_NUMBER} | awk 'NR!=1 {print $2}' | xargs -I {} kill {}
 
 CONFIG_FILE="/apps/software-configs/jupyterhub/jupyterhub_config-{{ansible_hostname}}.py"
-/apps/easybuild/4.5.4/software/jupyterlab/2022.05.10/bin/jupyterhub -f ${CONFIG_FILE}
+/apps/easybuild/4.5.4/software/jupyterlab/${JHUB_VERSION}/bin/jupyterhub -f ${CONFIG_FILE}

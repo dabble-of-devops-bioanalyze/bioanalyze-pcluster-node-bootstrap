@@ -5,8 +5,9 @@
 # this should be in
 #################################################################
 
+export JHUB_VERSION="2023.09.17"
 export AWS_DEFAULT_REGION="us-east-1"
 CONFIG_FILE="/apps/software-configs/jupyterhub/dask_gateway_config-{{ansible_hostname}}.py"
-export PATH="/apps/easybuild/4.5.4/software/jupyterlab/2022.05.10/bin/:$PATH"
+export PATH="/apps/easybuild/4.5.4/software/jupyterlab/${JHUB_VERSION}/bin/:$PATH"
 
-/apps/easybuild/4.5.4/software/jupyterlab/2022.05.10/bin/dask-gateway-server -f ${CONFIG_FILE}
+/apps/easybuild/4.5.4/software/jupyterlab/${JHUB_VERSION}/bin/dask-gateway-server -f ${CONFIG_FILE}
