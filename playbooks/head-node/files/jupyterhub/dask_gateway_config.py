@@ -9,6 +9,7 @@ import os
 # CONSTANTS
 #################################################################
 
+JHUB_VERSION = "2023.09.17"
 JUPYTERHUB_BIND_PORT = 8000
 JUPYTERHUB_API_PORT = 8081
 JUPYTERHUB_CONNECT_IP = get_ec2_address()

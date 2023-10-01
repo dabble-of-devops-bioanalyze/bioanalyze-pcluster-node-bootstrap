@@ -16,6 +16,8 @@ from aws_pcluster_slurm_spawner.aws_pcluster_slurm_spawner import get_ec2_addres
 # CONSTANTS
 #################################################################
 
+#JHUB_VERSION="jupyterlab/2023.09.17"
+JHUB_VERSION="2023.09.17"
 JUPYTERHUB_BIND_PORT = 8000
 JUPYTERHUB_API_PORT = 8081
 JUPYTERHUB_CONNECT_IP = get_ec2_address()
@@ -64,10 +66,11 @@ c.BatchSpawnerBase.req_partition = 'dev'
 c.BatchSpawnerBase.req_runtime = '1:00:00'
 c.BatchSpawnerBase.req_options = ''
 
-c.BatchSpawnerBase.req_prologue = """
+c.BatchSpawnerBase.req_prologue = f"""
 # load modules
+module purge
 module load Miniconda3
-module load jupyterlab
+module load jupyterlab/{JHUB_VERSION}
 """
 
 c.JupyterHub.spawner_class = PClusterSlurmSpawner
