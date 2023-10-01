@@ -28,13 +28,13 @@
       export EASYBUILD_JOB_BACKEND='Slurm'
       eb --robot=${ROBOT}: --job  \
         --tmp-logdir $HOME/eb_tmplogs \
+        easybuild/easyconfigs/pangeo-notebook-2022.05.10/jupyterlab-2022.05.10.eb \
         easybuild/easyconfigs/jupyterlab/jupyterlab-2023.09.17.eb \
         easybuild/easyconfigs/jupyterlab/jupyterlab-2023.07.10.eb \
         easybuild/easyconfigs/miniconda3-4.12.0.eb \
         easybuild/easyconfigs/r-datascience-4.eb \
         easybuild/easyconfigs/pcluster-helpers-0.0.1.eb \
         easybuild/easyconfigs/nextflow-22.04.0.eb \
-        easybuild/easyconfigs/pangeo-notebook-2022.05.10/jupyterlab-2022.05.10.eb \
         easybuild/easyconfigs/easybuild-4.5.4.eb 
 
   tasks:
@@ -114,6 +114,7 @@
         environment: easybuild4
         state: present
       when: ansible_os_family == "Debian"
+      register: conda_in_place
     - name: Alinux2 - Git checkout
       become: yes
       become_user: "ec2-user"
